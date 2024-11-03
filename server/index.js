@@ -34,6 +34,8 @@ app.get('/api/hello', async (req, res) => {
 
         res.json({ message: `${completion.choices[0].message.content}` });
     } catch (error) {
+        // Bruh this is probably the most annoying error ever
+        // made a new API key and it worked fine
         if (error.code === "insufficient_quota") {
             console.error('Error calling OpenAI API:', error);
             res.status(429).json({ error: 'Rate limit exceeded' });
