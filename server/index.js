@@ -3,21 +3,26 @@ import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
 
+import openai from './config/openai.js';
+import connectDB from './config/db.js';
+
+// I have no idea why i need this here but okay
 dotenv.config();
 
+// The port in which the backend server will run OR 5000 if no port is specified
 const PORT = process.env.PORT || 5000;
 
-const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-});
-
+// app is an instance of express (This is like the Flask equivalent of app = Flask(__name__))
 const app = express();
 
-// Middleware
+// idek what this is but the tutorial said to add it
 app.use(cors());
 app.use(express.json());
 
+// Initialize and connect to the MongoDB database :)
+connectDB();
 
+// Temporary route to test the OpenAI API
 app.get('/api/hello', async (req, res) => {
     try {
         const completion = await openai.chat.completions.create({
@@ -46,7 +51,7 @@ app.get('/api/hello', async (req, res) => {
     }
 });
 
-// Start server
+// Starts the server on the specified port
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
