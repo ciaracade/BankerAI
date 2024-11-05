@@ -3,8 +3,8 @@ import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
 
-import openai from './config/openai.js';
 import connectDB from './config/db.js';
+import articleRoutes from './routes/article.js';
 
 // I have no idea why i need this here but okay
 dotenv.config();
@@ -23,32 +23,10 @@ app.use(express.json());
 connectDB();
 
 // Temporary route to test the OpenAI API
-app.get('/api/hello', async (req, res) => {
-    try {
-        const completion = await openai.chat.completions.create({
-            model: "gpt-4o-mini",
-            messages: [
-                { role: "system", content: "You are a helpful assistant." },
-                {
-                    role: "user",
-                    content: "Write a haiku about recursion in programming.",
-                },
-            ],
-        });
+app.use('/bankerai', articleRoutes)
 
-
-        res.json({ message: `${completion.choices[0].message.content}` });
-    } catch (error) {
-        // Bruh this is probably the most annoying error ever
-        // made a new API key and it worked fine
-        if (error.code === "insufficient_quota") {
-            console.error('Error calling OpenAI API:', error);
-            res.status(429).json({ error: 'Rate limit exceeded' });
-        } else {
-            console.error('Error calling OpenAI API:', error);
-            res.status(500).json({ error: 'An error occurred with the OpenAI API' });
-        }
-    }
+app.get('/', (req, res) => {
+    res.send('Yes, I work!');
 });
 
 // Starts the server on the specified port
