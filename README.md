@@ -6,6 +6,4 @@ BankerAI is a banking tool to be used by bankers in multiple levels in banking i
 
 ### Part of the +Technial Innovation Jam for University of Michigan Ross School of Business
 
-## test
-#t
 
