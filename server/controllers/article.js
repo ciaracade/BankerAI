@@ -29,8 +29,8 @@ const extractArticleContent = (html) => {
 const getSummary = async (content) => {
     try {
         const userContent = `
-            Provide a summary provide a short, 20 word summary about the problem
-         the article addresses and how to solve the issue. Mae sure this 
+            Provide a short, 20 word summary about the problem
+         the article addresses and how to solve the issue. Make sure this 
          summary is straight to the point, is around 20 words, and 
          states that problem that is being solved. Do not hallucinate. Here is the article:
          `;
