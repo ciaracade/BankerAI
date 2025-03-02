@@ -1,6 +1,3 @@
-# Saving the refined documentation as a Markdown file named `README.md`.
-
-documentation = """
 # BankerAI 🏦
 An AI-powered application designed to assist bankers in navigating the Banking Management Knowledge System for the University of Michigan's +Tech Innovation Jam.
 
